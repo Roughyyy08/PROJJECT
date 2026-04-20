@@ -1,70 +1,102 @@
-🚀 Life Admin OS
+---
 
+# 🚀 Life Admin OS
 
+![React](https://img.shields.io/badge/React-18-blue)
+![Firebase](https://img.shields.io/badge/Firebase-Backend-orange)
+![Vite](https://img.shields.io/badge/Vite-Build-purple)
+![Status](https://img.shields.io/badge/Status-Ready%20for%20Development-green)
+![License](https://img.shields.io/badge/License-Private-lightgrey)
 
+> A personal operating system for managing life logistics — tasks, deadlines, and documents in one place.
 
+---
 
+## 📖 About
 
+**Life Admin OS** is a productivity web app built for students and young professionals who struggle with scattered tools and missed deadlines.
 
+Instead of juggling todo apps, notes, and cloud storage, this app provides a **single unified workspace** to manage:
 
+* ✅ Tasks with deadlines
+* 📁 Important documents with expiry tracking
+* ⏳ A timeline of everything due
 
+The goal: **reduce mental overhead and prevent missed responsibilities**. 
 
-A personal operating system for managing life logistics — tasks, deadlines, and documents in one place.
+---
 
-📖 About
+## ✨ Features
 
-Life Admin OS is a productivity web app built for students and young professionals who struggle with scattered tools and missed deadlines.
+* 🔐 **Authentication**
 
-Instead of juggling todo apps, notes, and cloud storage, this app provides a single unified workspace to manage:
+  * Firebase email/password login
+  * Persistent sessions
 
-✅ Tasks with deadlines
-📁 Important documents with expiry tracking
-⏳ A timeline of everything due
+* 🧭 **Onboarding Flow**
 
-The goal: reduce mental overhead and prevent missed responsibilities.
+  * Guided 3-step first-time setup
 
-✨ Features
-🔐 Authentication
-Firebase email/password login
-Persistent sessions
-🧭 Onboarding Flow
-Guided 3-step first-time setup
-📊 Dashboard
-Tasks due this week
-Overdue alerts
-Document expiry warnings
-Unified timeline
-✅ Task Manager
-Full CRUD operations
-Categories, priorities, deadlines
-Filters & sorting
-📁 Document Vault
-Secure uploads (PDF, JPG, PNG, WEBP)
-Expiry tracking
-Signed URL downloads
-Storage quota management
-🔍 Global Search
-Instant search across tasks & documents
-Keyboard navigation
-📜 Activity Log
-Track all user actions (read-only)
-🧱 Tech Stack
-Layer	Tech
-Frontend	React 18
-Build Tool	Vite
-Routing	React Router v6
-State	Context API
-Backend	Firebase (Auth, Firestore, Storage)
-Styling	TailwindCSS / CSS Modules
-Date Utils	date-fns
-📸 Screenshots (Coming Soon)
+* 📊 **Dashboard**
 
-Add screenshots or demo GIFs here
-Example:
+  * Tasks due this week
+  * Overdue alerts
+  * Document expiry warnings
+  * Unified timeline
 
-/assets/dashboard.png
-/assets/tasks.png
-🏗️ Project Structure
+* ✅ **Task Manager**
+
+  * Full CRUD operations
+  * Categories, priorities, deadlines
+  * Filters & sorting
+
+* 📁 **Document Vault**
+
+  * Secure uploads (PDF, JPG, PNG, WEBP)
+  * Expiry tracking
+  * Signed URL downloads
+  * Storage quota management
+
+* 🔍 **Global Search**
+
+  * Instant search across tasks & documents
+  * Keyboard navigation
+
+* 📜 **Activity Log**
+
+  * Track all user actions (read-only)
+
+---
+
+## 🧱 Tech Stack
+
+| Layer      | Tech                                |
+| ---------- | ----------------------------------- |
+| Frontend   | React 18                            |
+| Build Tool | Vite                                |
+| Routing    | React Router v6                     |
+| State      | Context API                         |
+| Backend    | Firebase (Auth, Firestore, Storage) |
+| Styling    | TailwindCSS / CSS Modules           |
+| Date Utils | date-fns                            |
+
+---
+
+## 📸 Screenshots (Coming Soon)
+
+> Add screenshots or demo GIFs here
+> Example:
+>
+> ```
+> /assets/dashboard.png
+> /assets/tasks.png
+> ```
+
+---
+
+## 🏗️ Project Structure
+
+```bash
 src/
 ├── components/     # Reusable UI
 ├── pages/          # Route pages
@@ -73,68 +105,116 @@ src/
 ├── hooks/          # Custom hooks
 ├── utils/          # Helpers
 ├── firebase.js     # Firebase config
-⚙️ Setup & Installation
-1. Clone the repo
+```
+
+---
+
+## ⚙️ Setup & Installation
+
+### 1. Clone the repo
+
+```bash
 git clone https://github.com/your-username/life-admin-os.git
 cd life-admin-os
-2. Install dependencies
+```
+
+### 2. Install dependencies
+
+```bash
 npm install
-3. Configure environment variables
+```
 
-Create .env.local:
+### 3. Configure environment variables
 
+Create `.env.local`:
+
+```env
 VITE_FIREBASE_API_KEY=
 VITE_FIREBASE_AUTH_DOMAIN=
 VITE_FIREBASE_PROJECT_ID=
 VITE_FIREBASE_STORAGE_BUCKET=
 VITE_FIREBASE_MESSAGING_SENDER_ID=
 VITE_FIREBASE_APP_ID=
+```
 
-⚠️ Do not commit .env.local
+> ⚠️ Do not commit `.env.local`
 
-4. Run the app
+---
+
+### 4. Run the app
+
+```bash
 npm run dev
-🔐 Security
-User data is isolated per user (Firestore rules)
-Secure file access via signed URLs
-No public data exposure
-🎯 Roadmap
-✅ v1 (Current Scope)
-Auth
-Tasks
-Document Vault
-Dashboard
-Search
-Activity Log
-🚫 Not Included (v1)
-Real-time collaboration
-Mobile apps
-Push/email notifications
-AI features
-Calendar integrations
-📊 Success Metrics
-⚡ Dashboard load < 2s
-📅 ≥90% tasks have deadlines
-⏳ Expiry alerts ≥7 days early
-🔐 No silent auth failures
-🧩 Zero empty UI states
-🤝 Contributing
+```
+
+---
+
+## 🔐 Security
+
+* User data is isolated per user (Firestore rules)
+* Secure file access via signed URLs
+* No public data exposure
+
+---
+
+## 🎯 Roadmap
+
+### ✅ v1 (Current Scope)
+
+* Auth
+* Tasks
+* Document Vault
+* Dashboard
+* Search
+* Activity Log
+
+### 🚫 Not Included (v1)
+
+* Real-time collaboration
+* Mobile apps
+* Push/email notifications
+* AI features
+* Calendar integrations
+
+---
+
+## 📊 Success Metrics
+
+* ⚡ Dashboard load < 2s
+* 📅 ≥90% tasks have deadlines
+* ⏳ Expiry alerts ≥7 days early
+* 🔐 No silent auth failures
+* 🧩 Zero empty UI states
+
+---
+
+## 🤝 Contributing
 
 Currently not open for public contributions.
 (You can update this later if needed.)
 
-📄 License
+---
+
+## 📄 License
 
 Private / Internal Use Only
 
-💡 Inspiration
+---
+
+## 💡 Inspiration
 
 Built to solve a real problem:
 
-“Too many tools, not enough clarity.”
+> “Too many tools, not enough clarity.”
 
-⭐ Future Improvements
-Mobile app (React Native)
-Notifications system
-Calendar integrations
-AI-assisted task prioritization
+---
+
+## ⭐ Future Improvements
+
+* Mobile app (React Native)
+* Notifications system
+* Calendar integrations
+* AI-assisted task prioritization
+
+---
+
