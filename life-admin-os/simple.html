@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Test</title>
+</head>
+<body>
+  <h1>Simple Test Page</h1>
+  <p id="demo">Loading...</p>
+  <button onclick="clicked()">Click Me</button>
+  
+  <script>
+    document.getElementById('demo').innerHTML = 'Script loaded!';
+    
+    function clicked() {
+      alert('Button clicked! Firebase will not work on file:// protocol.');
+      document.getElementById('demo').innerHTML = 'Button works!';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test Login - Email</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; background: #f5f5f5; }
+    .box { max-width: 400px; margin: 50px auto; background: white; padding: 30px; border-radius: 10px; border: 2px solid black; }
+    input { width: 100%; padding: 10px; margin: 5px 0 15px; border: 2px solid black; border-radius: 5px; }
+    button { background: #1C1C1E; color: white; border: none; padding: 15px 30px; border-radius: 5px; cursor: pointer; font-size: 16px; }
+    #result { margin-top: 20px; padding: 10px; border-radius: 5px; }
+    .error { color: red; background: #ffebee; }
+    .success { color: green; background: #e8f5e9; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Life Admin - Email Test</h1>
+    <p>Use email/password sign-in</p>
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="signUp()">Create Account</button>
+    <button onclick="signIn()">Sign In</button>
+    <div id="result"></div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+    import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+
+    const config = {
+      apiKey: "AIzaSyBSjiXJYdnO-oVu-HVV0pfABAgFuCUs0zU",
+      authDomain: "lifeadmin-7e9b6.firebaseapp.com",
+      projectId: "lifeadmin-7e9b6",
+      storageBucket: "lifeadmin-7e9b6.firebasestorage.app",
+      messagingSenderId: "88414502485",
+      appId: "1:88414502485:web:7d457496617fa38d0d5edc"
+    };
+
+    const app = initializeApp(config);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    window.signUp = async () => {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const resultDiv = document.getElementById('result');
+      
+      try {
+        const result = await createUserWithEmailAndPassword(auth, email, password);
+        const user = result.user;
+        
+        // Create user doc
+        const userDocRef = doc(db, 'users', user.uid);
+        await setDoc(userDocRef, {
+          id: user.uid,
+          email: user.email,
+          displayName: email.split('@')[0],
+          onboardingDone: false,
+          createdAt: serverTimestamp()
+        });
+        
+        resultDiv.innerHTML = '<div class="success"><p>Account created for: ' + user.email + '</p></div>';
+      } catch (err) {
+        resultDiv.innerHTML = '<div class="error"><p>Error: ' + err.message + '</p><p>Code: ' + err.code + '</p></div>';
+      }
+    };
+
+    window.signIn = async () => {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const resultDiv = document.getElementById('result');
+      
+      try {
+        const result = await signInWithEmailAndPassword(auth, email, password);
+        const user = result.user;
+        resultDiv.innerHTML = '<div class="success"><p>Signed in as: ' + user.email + '</p></div>';
+      } catch (err) {
+        resultDiv.innerHTML = '<div class="error"><p>Error: ' + err.message + '</p><p>Code: ' + err.code + '</p></div>';
+      }
+    };
+  </script>
+</body>
+</html>

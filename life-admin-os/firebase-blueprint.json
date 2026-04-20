@@ -1,0 +1,86 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile data",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "User UID" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "onboardingDone": { "type": "boolean" },
+        "vaultUsedBytes": { "type": "number" },
+        "createdAt": { "type": "object", "description": "Firestore Timestamp" }
+      },
+      "required": ["id", "email", "displayName", "onboardingDone", "vaultUsedBytes", "createdAt"]
+    },
+    "Task": {
+      "title": "Task",
+      "description": "A task managed by the user",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string", "maxLength": 120 },
+        "category": { "type": "string", "enum": ["Academic", "Financial", "Personal", "Health"] },
+        "priority": { "type": "string", "enum": ["Low", "Medium", "High"] },
+        "deadline": { "type": "object", "description": "Firestore Timestamp" },
+        "status": { "type": "string", "enum": ["active", "completed"] },
+        "notes": { "type": "string", "maxLength": 500 },
+        "completedAt": { "type": "object", "description": "Firestore Timestamp" },
+        "createdAt": { "type": "object", "description": "Firestore Timestamp" }
+      },
+      "required": ["id", "userId", "title", "category", "priority", "deadline", "status", "createdAt"]
+    },
+    "Document": {
+      "title": "Document",
+      "description": "Metadata for an uploaded document",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "storagePath": { "type": "string" },
+        "mimeType": { "type": "string", "enum": ["application/pdf", "image/jpeg", "image/png", "image/webp"] },
+        "sizeBytes": { "type": "number", "maximum": 10485760 },
+        "docType": { "type": "string", "enum": ["ID", "Certificate", "Insurance", "Financial", "Other"] },
+        "expiryDate": { "type": "object", "description": "Firestore Timestamp" },
+        "createdAt": { "type": "object", "description": "Firestore Timestamp" }
+      },
+      "required": ["id", "userId", "name", "storagePath", "mimeType", "sizeBytes", "docType", "createdAt"]
+    },
+    "ActivityLog": {
+      "title": "ActivityLog",
+      "description": "Log of user actions",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "action": { "type": "string", "enum": ["task_created", "task_completed", "task_deleted", "task_updated", "document_uploaded", "document_deleted"] },
+        "entityType": { "type": "string", "enum": ["task", "document"] },
+        "entityId": { "type": "string" },
+        "entityName": { "type": "string" },
+        "createdAt": { "type": "object", "description": "Firestore Timestamp" }
+      },
+      "required": ["id", "userId", "action", "entityType", "entityId", "entityName", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User profile data"
+    },
+    "/users/{userId}/tasks/{taskId}": {
+      "schema": { "$ref": "#/entities/Task" },
+      "description": "Tasks for a specific user"
+    },
+    "/users/{userId}/documents/{documentId}": {
+      "schema": { "$ref": "#/entities/Document" },
+      "description": "Document metadata for a specific user"
+    },
+    "/users/{userId}/activityLog/{logId}": {
+      "schema": { "$ref": "#/entities/ActivityLog" },
+      "description": "Activity logs for a specific user"
+    }
+  }
+}
