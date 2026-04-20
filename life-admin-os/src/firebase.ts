@@ -23,12 +23,12 @@ try {
 
 // Merge configs - env takes precedence
 const firebaseConfig = {
-  apiKey: envConfig.apiKey || fileConfig.default?.apiKey || '',
-  authDomain: envConfig.authDomain || fileConfig.default?.authDomain || '',
-  projectId: envConfig.projectId || fileConfig.default?.projectId || '',
-  storageBucket: envConfig.storageBucket || fileConfig.default?.storageBucket || '',
-  messagingSenderId: envConfig.messagingSenderId || fileConfig.default?.messagingSenderId || '',
-  appId: envConfig.appId || fileConfig.default?.appId || ''
+  apiKey: envConfig.apiKey || fileConfig.apiKey || '',
+  authDomain: envConfig.authDomain || fileConfig.authDomain || '',
+  projectId: envConfig.projectId || fileConfig.projectId || '',
+  storageBucket: envConfig.storageBucket || fileConfig.storageBucket || '',
+  messagingSenderId: envConfig.messagingSenderId || fileConfig.messagingSenderId || '',
+  appId: envConfig.appId || fileConfig.appId || ''
 };
 
 let app: FirebaseApp | null = null;
@@ -46,8 +46,8 @@ if (hasValidConfig) {
     storage = getStorage(app);
     
     // Use custom database ID if provided in config, but only use fileConfig's if the project ID matches
-    const useFileDbId = fileConfig.default?.projectId === firebaseConfig.projectId;
-    const dbId = import.meta.env.VITE_FIREBASE_DB_ID || (useFileDbId ? fileConfig.default?.firestoreDatabaseId : undefined);
+    const useFileDbId = fileConfig.projectId === firebaseConfig.projectId;
+    const dbId = import.meta.env.VITE_FIREBASE_DB_ID || (useFileDbId ? fileConfig.firestoreDatabaseId : undefined);
     db = dbId && dbId !== '(optional)' ? getFirestore(app, dbId) : getFirestore(app);
     
     console.log('Firebase initialized with project:', firebaseConfig.projectId);
